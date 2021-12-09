@@ -15,7 +15,7 @@ body {
   display: block;
 
   // margin-right: auto;
-  width: 60%;
+  width: 100%;
   border: 3px $solidGold;
   height: 50px;
   border-radius: 5px;
@@ -71,13 +71,16 @@ textarea {
 }
 
 #MessageContent {
+  max-width: 90%;
   margin: auto;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: flex-end;
+  flex-direction: column;
 }
 
 #content {
-  margin: 10px 0px 0px 350px;
+  margin: 10px 0px 0px 0px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -89,6 +92,7 @@ textarea {
   margin: auto;
   display: inline-block;
   min-width: 70vw;
+  width: 100%;
 }
 
 table,
@@ -163,7 +167,9 @@ td {
 
 .inputFields {
   display: flex;
+  width: 100%;
 }
+
 .inputFields button {
   justify-content: flex-start;
   border: 1px solid $darkOrange;
@@ -200,6 +206,21 @@ tr:hover {
 .submitButton {
   background-color: transparent;
   color: $darkOrange;
+}
+
+#logoutButton {
+  background-color: transparent;
+  color: $darkOrange;
+  margin: 10px;
+  height: 40px;
+  background-color: transparent;
+  border: 1px solid $darkOrange;
+  border-radius: 5px;
+}
+#logoutButton:hover {
+  background-color: $darkOrange;
+  color: $darkGray;
+  transition-duration: 0.5s;
 }
 
 #loginButtons {

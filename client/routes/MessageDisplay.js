@@ -89,14 +89,14 @@ const MessageDisplay = () => {
   }
 
   const messages = [];
-  messages.push(
-    <tr>
-      <th>Date</th>
-      <th>Name</th>
-      <th>Message</th>
-      <th>Actions</th>
-    </tr>
-  );
+  // messages.push(
+  //   <tr>
+  //     <th>Date</th>
+  //     <th>Name</th>
+  //     <th>Message</th>
+  //     <th>Actions</th>
+  //   </tr>
+  // );
 
   let count = 0;
 
@@ -181,20 +181,20 @@ const MessageDisplay = () => {
 
   return (
     <div>
-      <button className="submitButton" style={{float: "right"}} onClick={logout}>Logout</button>
       <div id="MessageContent">
+      <button id="logoutButton" style={{float: "right"}} onClick={logout}>Logout</button>
         <div id="MessageDisplay">
           <table>
             <tbody>{messages}</tbody>
           </table>
           <br />
         </div>
+        <MessageInput
+          state={state}
+          setState={setState}
+          fetchMessages={fetchMessages}
+        />
       </div>
-      <MessageInput
-        state={state}
-        setState={setState}
-        fetchMessages={fetchMessages}
-      />
     </div>
   );
 };
