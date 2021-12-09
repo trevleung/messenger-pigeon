@@ -52,10 +52,10 @@ const MessageDisplay = () => {
         console.log("Get Messages: ERROR", err);
       });
   }
-  
+
   useEffect(fetchMessages, []);
   useEffect(fetchMessagesLongPolling, []);
-
+  
   // send delete message to back end, front end deletes message w/o need for response
   function deleteMessage(el) {
     fetch("/api/messages/" + el.id, { method: "DELETE" })
@@ -89,17 +89,9 @@ const MessageDisplay = () => {
   }
 
   const messages = [];
-  // messages.push(
-  //   <tr>
-  //     <th>Date</th>
-  //     <th>Name</th>
-  //     <th>Message</th>
-  //     <th>Actions</th>
-  //   </tr>
-  // );
-
+  
+  // add all data from state to messages, with edit and delete buttons if they are from the current user
   let count = 0;
-
   for (const el of state) {
     let actionButtons = <td></td>;
     let editStatus = (
@@ -179,6 +171,12 @@ const MessageDisplay = () => {
     navigate("/");
   };
 
+  // this one makes the messages table scroll to the bottom any time a new message arrives
+  useEffect(() => {
+    const table = document.getElementById("MessageDisplay");
+    table.scrollTop = table.scrollHeight;
+  })
+  
   return (
     <div>
       <div id="MessageContent">

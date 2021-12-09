@@ -93,6 +93,12 @@ textarea {
   display: inline-block;
   min-width: 70vw;
   width: 100%;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+#MessageDisplay::-webkit-scrollbar {
+  display: none;
 }
 
 table,
