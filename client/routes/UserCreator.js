@@ -34,7 +34,7 @@ const UserCreator = (props) => {
 
   return (
     <div id="UserCreator" style={{ display: "block" }}>
-      <h2>Register please, chatter!</h2>
+      <h2>Register please!</h2>
       <input
         className="textInput"
         id="createUsername"

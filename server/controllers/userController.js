@@ -51,11 +51,11 @@ userController.verifyUser = (req, res, next) => {
 
 userController.userProfile = (req, res, next) => {
     const { session_id } = req.cookies;
-    const params = [session_id];
+    const params = [req.params.username];
     const text =
       `SELECT username, nickname, about_me
       FROM users
-      WHERE session_id = $1;`;
+      WHERE username = $1;`;
     db.query(text, params)
       .then((response) => {
         res.locals.profile = response.rows[0];
@@ -70,8 +70,8 @@ userController.userProfile = (req, res, next) => {
   userController.editProfile = (req, res, next) => {
     const { aboutMe, nickname } = req.body;
     const { session_id } = req.cookies;
-    const text = `UPDATE users SET about_me=$1, nickname=$2 where session_id=$3;`;
-    params = [aboutMe, nickname, session_id]
+    const text = `UPDATE users SET about_me=$1, nickname=$2 where username=$3;`;
+    params = [aboutMe, nickname, req.params.username]
     db.query(text, params)
       .then((response) => {
           return next();

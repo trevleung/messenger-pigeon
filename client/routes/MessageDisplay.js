@@ -140,7 +140,7 @@ const MessageDisplay = () => {
       <tr id={count++} key={el.id}>
         <td className="timestamp">{formatDate(new Date(el.time_stamp))}</td>
         <td className="usernameMessage">
-          <Link to={`profiles/${currUsername}`}>
+          <Link className="profileLink" to={`profiles/${currUsername}`} style={{color: "white", textDecoration: "none"}}>
           {currUsername}
           </Link>
         </td>
@@ -175,7 +175,7 @@ const MessageDisplay = () => {
   return (
     <div>
       <div id="MessageContent">
-      <button id="logoutButton" style={{float: "right"}} onClick={logout}>Logout</button>
+      <button class="typicalButton" style={{float: "right"}} onClick={logout}>Logout</button>
         <div id="MessageDisplay">
           <table>
             <tbody>{messages}</tbody>

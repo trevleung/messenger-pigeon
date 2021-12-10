@@ -1,25 +1,22 @@
-import React, { useEffect } from 'react';
-import { useParams, useNavigate, Outlet } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate, Outlet} from 'react-router-dom';
 
 const Profile = () => {
   let params =useParams();
   let navigate = useNavigate();
-  // create call to backend for user information
-  // populate page with user info  
- 
-      // expecting this to be an objest with this format :
-       // { nickname: 'Joe Blow' aboutMe: 'I am a chat app user!' })
-  let userAbout = 'no info yet'
-  let userNickname = 'no nickname'
+  const [profileInfo, updateInfo] = useState({ about: 'no info yet', nickname: 'no nickname'})
+  
+  // usestate to set the above values, and update them in the useEffect hook
+
   useEffect(() => {
+    console.log(`fetching /api/profiles/${params.username}`)
     fetch(`/api/profiles/${params.username}`)
     .then(res => res.json())
     .then((userData) => {
       console.log(userData)
-      userAbout = userData.about_me;
-      userNickname = userData.nickname;
+      updateInfo({about: userData.about_me, nickname: userData.nickname})
     })
-  })
+  }, []);
 
   function getCookie(cname) {
     let name = cname + "=";
@@ -37,21 +34,24 @@ const Profile = () => {
     return "";
   }
   let editProfile = <div></div>
+  console.log(params)
+  console.log(params.user)
+  console.log(params.username)
   if (params.username === getCookie('username')) {
-    editProfile = <button onClick={() => navigate('edit')}>Edit Profile</button>
+    editProfile = <button class="typicalButton" onClick={() => navigate('edit')}>Edit Profile</button>
   }
     // editIfAllowed could be link to edit profile.... to a page with a form to edit your user profile and submit information
-  
-    return (
-      <div>
-        <p>Username: {params.username}</p>
-        <p>AKA: {userNickname}</p>
-        <p>About: {userAbout}</p>
-        <button onClick={() => navigate('/chatroom')}>Back To Chat</button>
-        <br></br>
-        {editProfile}
-        <Outlet />
-    </div>
+    
+  return (
+    <div className="profilePage">
+      <p><strong>Username:</strong> {params.username}</p>
+      <p><strong>AKA:</strong> {profileInfo.nickname}</p>
+      <p><strong>About:</strong> {profileInfo.about}</p>
+      <button className="typicalButton" onClick={() => navigate('/chatroom')}>Back To Chat</button>
+      <br></br>
+      {editProfile}
+      <Outlet />
+  </div>
   )
 }
 

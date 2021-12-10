@@ -214,7 +214,7 @@ tr:hover {
   color: $darkOrange;
 }
 
-#logoutButton {
+.typicalButton {
   background-color: transparent;
   color: $darkOrange;
   margin: 10px;
@@ -223,7 +223,7 @@ tr:hover {
   border: 1px solid $darkOrange;
   border-radius: 5px;
 }
-#logoutButton:hover {
+.typicalButton:hover {
   background-color: $darkOrange;
   color: $darkGray;
   transition-duration: 0.5s;
@@ -262,4 +262,15 @@ tr:hover {
 #editedFlag {
   color: rgb(173, 173, 173);
   font-size: 13px;
+}
+
+.profilePage {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.profileLink:hover {
+  text-decoration: underline;
 }

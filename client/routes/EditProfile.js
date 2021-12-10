@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 const EditProfile = () => {
   let params = useParams();
   let navigate = useNavigate();
+  const [profileInfo, updateInfo] = useState({ about: 'no info yet', nickname: 'no nickname'})
 
   // SEND PROFILE INFO TO SERVER
   function send() {
@@ -12,21 +13,19 @@ const EditProfile = () => {
       method: 'PATCH',
       body: JSON.stringify({ nickname: document.getElementById('nickname').value, aboutMe: document.getElementById('aboutMe').value}),
       headers: { 'Content-Type': 'application/json' },
+    }).then((res) => {
+      console.log(res)
     })
     .catch((err) => console.log(err))
   }
 
   return (
-    <div>
+    <div className="profilePage">
       <p>Username: {params.username}</p>
-      <input id="nickname" type="text" placeholder="what do you like to be called?"></input>
-      <input id="aboutMe" type="textArea" placeholder='tell us about yourself'></input>
+      <input id="nickname" className="textInput" type="text" placeholder="what do you like to be called?"></input>
+      <input id="aboutMe" className="textInput" type="textArea" placeholder='tell us about yourself'></input>
       <br></br>
-      <button onClick={send}>Save Changes</button>
-      <br></br>
-      <br></br>
-      <button onClick={() => navigate(`/chatroom/profiles/${params.username}`)}>Back To Profile</button>
-      <button onClick={() => navigate('/chatroom')}>Back To Chat</button>
+      <button className="typicalButton" onClick={send}>Save Changes</button>
     </div>
   )
 }
