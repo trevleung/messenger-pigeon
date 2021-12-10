@@ -71,6 +71,7 @@ userController.userProfile = (req, res, next) => {
     const { aboutMe, nickname } = req.body;
     const { session_id } = req.cookies;
     const text = `UPDATE users SET about_me=$1, nickname=$2 where session_id=$3;`;
+    params = [aboutMe, nickname, session_id]
     db.query(text, params)
       .then((response) => {
           return next();
