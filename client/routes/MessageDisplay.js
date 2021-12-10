@@ -1,7 +1,7 @@
 import React, { Component, useEffect, setState, useState } from "react";
 import MessageInput from "../component/MessageInput";
 import dateFormat from "dateformat";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 
 const MessageDisplay = () => {
@@ -148,7 +148,11 @@ const MessageDisplay = () => {
     messages.push(
       <tr id={count++} key={el.id}>
         <td className="timestamp">{formatDate(new Date(el.time_stamp))}</td>
-        <td className="usernameMessage">{currUsername}</td>
+        <td className="usernameMessage">
+          <Link to={`profiles/${currUsername}`}>
+          {currUsername}
+          </Link>
+        </td>
         <td className="messageContents">
           <p id={`message${el.id}`} style={{ display: "block" }}>
             {el.content} {editStatus}

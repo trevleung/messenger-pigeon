@@ -34,13 +34,13 @@ const UserLogin = (props) => {
   const redirectToSignUp = () => {
     navigate("/signup");
   };
-  // if when the page first renders, if the broswer has a cookie
-  // redirect to chatroom
-  // if (document.cookie !== "") {
-  //   console.log('testing to see if/when this fires"');
-  //   console.log(document.cookie);
-  //   navigate("/chatroom");
-  // }
+ 
+  const onEnterPress = (e) => {
+    if(e.keyCode === 13) {
+      e.preventDefault();
+      send();
+    }
+  }
 
   return (
     <div id="UserLogin" style={{ display: "block" }}>
@@ -56,6 +56,7 @@ const UserLogin = (props) => {
         id="loginPassword"
         type="password"
         placeholder="Enter password"
+        onKeyDown={onEnterPress}
       ></input>
       <br />
       <div id="loginButtons">

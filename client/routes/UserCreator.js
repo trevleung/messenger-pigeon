@@ -24,6 +24,14 @@ const UserCreator = (props) => {
   function redirectLogin() {
     navigate("/");
   }
+
+  const onEnterPress = (e) => {
+    if(e.keyCode === 13) {
+      e.preventDefault();
+      send();
+    }
+  }
+
   return (
     <div id="UserCreator" style={{ display: "block" }}>
       <h2>Register please, chatter!</h2>
@@ -38,6 +46,7 @@ const UserCreator = (props) => {
         id="createPassword"
         type="password"
         placeholder="Enter password"
+        onKeyDown={onEnterPress}
       ></input>
       <br />
       <div id="loginButtons">
