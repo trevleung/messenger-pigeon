@@ -21,13 +21,8 @@ const MessageDisplay = () => {
   }
   
   function fetchMessages() {
-    console.log("attempting fetch");
     fetch("/api/messages")
       .then((res) => res.json())
-      .then((res) => {
-        console.log(res);
-        return res;
-      })
       .then((data) => {
         setState(data);
         fetchMessagesLongPolling();
@@ -38,10 +33,6 @@ const MessageDisplay = () => {
   function fetchMessagesLongPolling() {
     fetch("/api/messagesLongPolling")
       .then((res) => res.json())
-      .then((res) => {
-        console.log(res);
-        return res;
-      })
       .then((data) => {
         setState(data);
         fetchMessagesLongPolling();

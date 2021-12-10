@@ -8,6 +8,7 @@ import UserCreator from "./routes/UserCreator.js";
 import MessageDisplay from "./routes/MessageDisplay.js";
 import UserProfile from "./routes/Profiles.js"
 import Profile from "./routes/Profile.js";
+import EditProfile from "./routes/EditProfile.js";
 
 import styles from "./scss/application.scss";
 
@@ -20,7 +21,9 @@ render(
         <Route path="chatroom" element={<MessageDisplay />} />
         <Route path="secretPage" element={<SecretPage />} />
         <Route path="chatroom/profiles" element={<UserProfile />}>
-          <Route path=":username" element={<Profile />} />
+          <Route path=":username" element={<Profile />}>
+            <Route path="edit" element={<EditProfile />} />
+          </Route>
         </Route>
         <Route
           path="*"
